@@ -3,6 +3,34 @@ import { Container, Subtitle, Title } from './styles';
 
 const Header: React.FC = () => {
     const [currentTime, setCurrentTime] = useState<string>('');
+    const [currentDay, setCurrentDay] = useState<string>('');
+
+    useEffect(() => {
+        const day = new Date().getDay();
+
+        switch (day) {
+            case 0:
+                setCurrentDay('Domingo');
+                break;
+            case 1:
+                setCurrentDay('Segunda-feira');
+                break;
+            case 2:
+                setCurrentDay('Terça-feira');
+                break;
+            case 3:
+                setCurrentDay('Quarta-feira');
+                break;
+            case 4:
+                setCurrentDay('Quinta-feira');
+                break;
+            case 5:
+                setCurrentDay('Sexta-feira');
+                break;
+            default:
+                setCurrentDay('Sábado');
+        }
+    }, [])
 
     const realTimeClock = useCallback(() => {
         setInterval(() => {
@@ -27,7 +55,7 @@ const Header: React.FC = () => {
     return (
         <Container>
             <Title>
-                Suas tarefas de hoje dia:
+                Suas tarefas de hoje {currentDay}:
             </Title>
 
             <Subtitle>
